@@ -28,8 +28,8 @@ app.post("/api/shipmentinfo", async (req, res) => {
   const jsonObj = await csv().fromFile(csvFilePath);
   const result = jsonObj.filter(
     (shipment) =>
-      shipment["Min Shipment Weight (KG)"] <= sampleReqObj.shipWeight &&
-      shipment["Max Shipment Weight (KG)"] >= sampleReqObj.shipWeight
+      shipment["Min Shipment Weight (KG)"] <= req.body.shipWeight &&
+      shipment["Max Shipment Weight (KG)"] >= req.body.shipWeight
   );
   console.log(result);
   res.json(result[0]);
